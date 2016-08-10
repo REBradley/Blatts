@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Menu</title>
+    </head>
+
+
+{% block title %}
+<h1 class="text-center">SELECT SANDWICH TYPE</h1>
+{% endblock %}
+
+{% block content %}
+    
+{% if base_selections %}
+<div>
+    {% for base in base_selections %}
+</div>
+        <img src="/sandwich_builder/static/images/{{ base }}.jpg" class="img-responsive" alt="Responsive image">
+        <h4 class="text-center"><a href="{% url 'sandwich_builder:burger_constructor' base.bases %}">
+            {{ base.human_readable }} | ${{ base.price }}
+        </a></h4>
+    {% endfor %}
+{% endif %}
+{% endblock %}
+</html>

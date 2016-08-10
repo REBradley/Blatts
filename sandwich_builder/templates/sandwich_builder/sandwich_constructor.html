@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Sandwich Constructor</title>
+    </head>
+
+
+
+
+{% block title %}
+<h1>Build your {{ base.human_readable }} sandwich here.</h1>
+{% endblock %}
+
+{% block content %}
+{% if error_message %}<p><strong> {{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'sandwich_builder:add_sandwich' base=base %}" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form layout='inline' %}
+    
+    {% bootstrap_form form2 layout='inline' %}
+    
+    {% buttons %}
+    <button type="submit" class="btn btn-danger btn-block">
+        {% bootstrap_icon "star" %} Add
+    </button>
+    {% endbuttons %}
+</form>
+
+{% endblock %}
+</html>
